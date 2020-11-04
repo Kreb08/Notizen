@@ -40,4 +40,4 @@ export class NotesController {
   }
 }
 
-export const notesController = new NotesController();
+export const noteController = new NotesController();

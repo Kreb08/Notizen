@@ -1,6 +1,5 @@
-<html>
-    <p>{{title}}</p>
-    {{#with note}}
+<p>{{title}}</p>
+{{#with note}}
     <form action='{{url}}' method='post'>
         <label for="title">Titel</label>
         <input type="text" id="title" name="title" value="{{title}}">
@@ -29,5 +28,4 @@
 
         <input type='submit' value='Speichern'>
     </form>
-    {{/with}}
-</html>
+{{/with}}

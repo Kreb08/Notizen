@@ -7,15 +7,11 @@
     "checkJs": true,
     "strict": true,
     "noImplicitAny": false,
-    "esModuleInterop": true,
-    "importHelpers": true
+    "esModuleInterop": true
   },
   "exclude": [
     "node_modules"
   ],
-  "jsRules": {
-    "class-name": true
-  },
   "rules": {
     "only-arrow-functions": false
   }

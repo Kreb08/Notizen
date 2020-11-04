@@ -1,5 +1,5 @@
 # Project exclude paths
-/controller/notesController2.js
+/controller/notesController.js
 /controller/notesController2.js.map
 /node_modules/
 /routes/noteRoutes.js

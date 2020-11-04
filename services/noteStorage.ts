@@ -1,4 +1,4 @@
-import Datastore from "nedb-promises-ts";
+import Datastore from "nedb-promises";
 
 export class Note {
   title: string;
@@ -20,9 +20,9 @@ export class Note {
 }
 
 export class NoteStore {
-  private db: Datastore<any>;
+  private db: Datastore;
 
-  constructor(db?: Datastore<any>) {
+  constructor(db?: Datastore) {
     this.db =
       db || new Datastore({ filename: "./data/notes.db", autoload: true });
   }

@@ -1,12 +1,12 @@
 import * as express from "express";
-import { notesController } from "../controller/notesController2";
+import { noteController } from "../controller/notesController";
 
 const router = express.Router();
 
-router.get("/", notesController.showIndex.bind(notesController));
-router.get("/notes", notesController.createNote.bind(notesController));
-router.post("/notes", notesController.addNote.bind(notesController));
-router.get("/notes/:id/", notesController.editNote.bind(notesController));
-router.post("/notes/:id/", notesController.updateNote.bind(notesController));
+router.get("/", noteController.showIndex.bind(noteController));
+router.get("/notes", noteController.createNote.bind(noteController));
+router.post("/notes", noteController.addNote.bind(noteController));
+router.get("/notes/:id/", noteController.editNote.bind(noteController));
+router.post("/notes/:id/", noteController.updateNote.bind(noteController));
 
 export default router;

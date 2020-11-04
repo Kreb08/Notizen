@@ -1,0 +1,10 @@
+<form action='/notes' method='get'><input type='submit' value='Neue Notiz anlegen'></form>
+{{#each notes}}
+    <div class="container">
+        <div class="title">{{title}}</div>
+        <div class="importance">{{importance}}</div>
+        <div class="date">{{endDate}}</div>
+        <textarea class="description" readonly>{{description}}</textarea>
+        <form class="edit" action='/notes/{{_id}}' method='get'><input type='submit' value='Editieren'></form>
+    </div>
+{{/each}}

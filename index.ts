@@ -3,13 +3,23 @@ import bodyParser from "body-parser";
 import exphbs from "express-handlebars";
 import path from "path";
 import router from "./routes/noteRoutes";
-//import { overrideMiddleware } from "./utils/method-override";
+import { overrideMiddleware } from "./utils/method-override";
 import session from "express-session";
 
 const app = express();
-let handlebars = require("./utils/handlebar-util")(exphbs);
+let handlebars = exphbs.create({
+  helpers: {
+    setChecked: function (value, currentValue) {
+      if (value === currentValue) {
+        return "checked";
+      } else {
+        return "";
+      }
+    },
+  },
+});
 app.engine("handlebars", handlebars.engine);
-app.set("view engine", "hbs");
+app.set("view engine", "handlebars");
 app.set("views", path.resolve("views"));
 
 const sessionUserSettings = (req: any, res: any, next: () => void) => {
@@ -41,7 +51,7 @@ app.use(sessionUserSettings);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-//app.use(overrideMiddleware);
+app.use(overrideMiddleware);
 app.use(router);
 app.use(express.static(path.resolve("public")));
 
