@@ -1,0 +1,12 @@
+# Project exclude paths
+/controller/notesController2.js
+/controller/notesController2.js.map
+/node_modules/
+/routes/noteRoutes.js
+/services/noteStorage.js
+/utils/handlebar-util.js
+/utils/handlebar-util.js.map
+/utils/method-override.js
+/utils/method-override.js.map
+/index.js
+/index.js.map

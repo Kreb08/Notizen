@@ -1,0 +1,45 @@
+
+
+@media (max-width: 600px) {
+    .container {
+        display: grid;
+        grid-template-rows: auto auto auto auto;
+        grid-template-columns: auto min-content;
+        grid-template-areas: "title title" "date importance" "description description" "finished edit";
+    }
+}
+@media (min-width: 600px) {
+    .container {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: max-content auto min-content;
+        grid-template-areas: "date title importance" "finished description edit";
+    }
+}
+
+.date {
+    grid-area: date;
+    width: max-content;
+}
+
+.title {
+    grid-area: title;
+}
+
+.importance {
+    grid-area: importance;
+    width: fit-content;
+}
+
+.finished {
+    grid-area: finished;
+}
+
+.description {
+    grid-area: description;
+}
+
+.edit {
+    grid-area: edit;
+    width: fit-content;
+}

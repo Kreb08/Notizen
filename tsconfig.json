@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "importHelpers": true
+  },
+  "exclude": [
+    "node_modules"
+  ],
+  "jsRules": {
+    "class-name": true
+  },
+  "rules": {
+    "only-arrow-functions": false
+  }
+}
