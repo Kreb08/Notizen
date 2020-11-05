@@ -6,7 +6,7 @@ export class Note {
     public description: string,
     public importance: number,
     public endDate: Date,
-    public finished: boolean = false
+    public finished: string = "off"
   ) {}
 }
 
@@ -53,21 +53,27 @@ export class NoteStore {
     return this.db.findOne({ _id: id });
   }
 
-  async all(sort: string) {
-    let query;
-    switch (sort) {
+  async all(orderBy: string, orderDirection: number, filter: string) {
+    let filterQuery;
+    if (filter === "off") {
+      filterQuery = {};
+    } else {
+      filterQuery = { finished: "off" };
+    }
+    let sortQuery;
+    switch (orderBy) {
       case "importance":
-        query = { importance: -1 };
+        sortQuery = { importance: -orderDirection };
         break;
       case "createDate":
-        query = { createdAt: 1 };
+        sortQuery = { createdAt: orderDirection };
         break;
       default:
       case "finishDate":
-        query = { endDate: 1 };
+        sortQuery = { endDate: orderDirection };
         break;
     }
-    return this.db.find({}).sort(query);
+    return this.db.find(filterQuery).sort(sortQuery);
   }
 }
 

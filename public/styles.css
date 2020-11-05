@@ -1,8 +1,7 @@
 
-h1 {
-    padding: 16px 32px;
-    background-color: lightgray;
-    min-width: max-content;
+.dark {
+    background: #333;
+    color: #ddd;
 }
 
 body {
@@ -10,9 +9,33 @@ body {
     font-family: "Fira Code", sans-serif;
 }
 
+h1 {
+    padding: 16px 32px;
+    background: #ddd;
+    min-width: max-content;
+}
+
+.dark h1 {
+    background: #444;
+}
+
 .optionBar {
     display: flex;
     flex-direction: row;
+}
+
+.orderBy {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    align-items: center;
+}
+
+.filter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 24px;
 }
 
 .sortButton {
@@ -20,18 +43,47 @@ body {
     margin: 8px 0;
     padding: 8px 16px;
     text-align: center;
-    background-color: lightgray;
-    border-radius: 2px;
-    border: black solid 1px;
+    background: #ddd;
+    border-style: outset;
+    border-width: 2px;
+}
+
+.dark .sortButton {
+    background: #555;
+    border-color: #777;
 }
 
 .sortButton:not(:first-child) {
     margin-left: 24px;
 }
 
-@media (max-width: 600px) {
+.styleSwitch {
+    font-size: 18px;
+    font-family: "Fira Code", sans-serif;
+    margin: 8px 0;
+    padding: 8px 16px;
+}
+
+.dark .styleSwitch {
+    background: #555555;
+    color: #dddddd;
+}
+
+.addNoteButton {
+    padding: 8px 16px;
+    font-size: 18px;
+    font-family: "Fira Code", sans-serif;
+}
+
+.dark .addNoteButton {
+    background: #555555;
+    color: #dddddd;
+}
+
+@media (max-width: 700px) {
     .optionBar {
         flex-direction: column;
+        min-width: max-content;
     }
     .sortButton {
         margin: 8px 0;
@@ -40,14 +92,36 @@ body {
     .sortButton:not(:first-child) {
         margin-left: 0;
     }
+
+    .orderBy {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter {
+        flex-direction: row;
+        margin-left: 0;
+    }
+
+    .styleSwitch {
+        flex: 1;
+        margin-left: 8px;
+    }
+
+    .addNoteButton {
+        width: 100%;
+    }
 }
 
-.addNoteButton {
-    flex: 1;
-    align-items: center;
-    padding: 8px 16px;
-    font-size: 18px;
-    font-family: "Fira Code", sans-serif;
+.noNotesText {
+    padding: 32px 16px;
+    text-align: center;
+    background: #ddd;
+    border-radius: 4px;
+}
+
+.dark .noNotesText {
+    background: #444;
 }
 
 .list {
@@ -60,9 +134,13 @@ body {
     flex-direction: row;
     margin: 16px 0;
     padding: 4px;
-    background-color: lightgray;
+    background: #ddd;
     border-radius: 4px;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.dark .container {
+    background: #444;
 }
 
 .container1 {
@@ -119,6 +197,11 @@ body {
     resize: none;
 }
 
+.dark .description {
+    background: #555;
+    color: #ddd;
+}
+
 .edit {
     display: flex;
     flex: 1;
@@ -130,7 +213,12 @@ body {
     padding: 0 16px;
 }
 
-@media (max-width: 600px) {
+.dark .editButton {
+    background: #555;
+    color: #ddd;
+}
+
+@media (max-width: 700px) {
     .container {
         flex-direction: column;
         min-width: max-content;
@@ -180,6 +268,10 @@ body {
     font-family: "Fira Code", sans-serif;
     font-size: 16px;
 }
+.dark .noteElement > input, .dark .noteElement > textarea {
+    background: #444;
+    color: #dddddd;
+}
 
 .noteElement > div > label {
     margin-right: 8px;
@@ -191,7 +283,12 @@ body {
     font-size: 16px;
 }
 
-@media (max-width: 600px) {
+.dark .noteButton {
+    background: #555;
+    color: #ddd;
+}
+
+@media (max-width: 700px) {
     .noteElement {
         flex-direction: column;
     }

@@ -1,42 +1,58 @@
 <h1>Notizen</h1>
-<form action="/" method="get" class="optionBar">
-    <label class="sortButton" for="finishDate">
-        <label for="finishDate">Finish Date</label>
-        <input type="radio" id="finishDate" name="sort" value="finishDate" {{setChecked 'finishDate' sort}} onclick="submit()"/>
-    </label>
-    <label class="sortButton" for="createDate">
-        <label for="createDate">Create Date</label>
-        <input type="radio" id="createDate" name="sort" value="createDate" {{setChecked 'createDate' sort}} onclick="submit()"/>
-    </label>
-    <label class="sortButton" for="importance">
-        <label for="importance">Importance</label>
-        <input type="radio" id="importance" name="sort" value="importance" {{setChecked 'importance' sort}} onclick="submit()"/>
-    </label>
-</form>
+{{#with options}}
+    <form action="/" method="get" class="optionBar">
+        <div class="orderBy">
+            <label class="sortButton" for="finishDate">
+                <label for="finishDate">Finish Date</label>
+                <input type="radio" id="finishDate" name="orderBy" value="finishDate" {{setChecked 'finishDate' orderBy}} onclick="submit()"/>
+            </label>
+            <label class="sortButton" for="createDate">
+                <label for="createDate">Create Date</label>
+                <input type="radio" id="createDate" name="orderBy" value="createDate" {{setChecked 'createDate' orderBy}} onclick="submit()"/>
+            </label>
+            <label class="sortButton" for="importance">
+                <label for="importance">Importance</label>
+                <input type="radio" id="importance" name="orderBy" value="importance" {{setChecked 'importance' orderBy}} onclick="submit()"/>
+            </label>
+            <input type="hidden" name="orderDirection" value=1>
+        </div>
+        <div class="filter">
+            <label class="sortButton" for="filter">
+                <label for="filter">Filter</label>
+                <input type="checkbox" id="filter" name="filter" {{setChecked 'on' filter}} onclick="submit()">
+            </label>
+            <input class="styleSwitch" type="submit" value="Style Switch">
+            <input type="hidden" name="theme" value="dark">
+        </div>
+    </form>
+{{/with}}
 <form action='/notes' method='get'><input type='submit' value='Neue Notiz anlegen' class="addNoteButton"></form>
-<ul class="list">
-    {{#each notes}}
-        <li class="container">
-            <div class="container1">
-                <div class="date">{{date endDate}}</div>
-                <form class="finished" action="/notes/{{_id}}" method="post">
-                    <input type="checkbox" id="finished" {{setChecked 'true' finished}} onclick="submit()">
-                    <label for="finished">Abgeschlossen</label>
-                    <input type="hidden" name="title" value="{{title}}">
-                    <input type="hidden" name="description" value="{{description}}">
-                    <input type="hidden" name="importance" value="{{importance}}">
-                    <input type="hidden" name="endDate" value="{{endDate}}">
-                    <input type="hidden" name="finished" value={{not finished}}>
-                </form>
-            </div>
-            <div class="container2">
-                <div class="title">{{title}}</div>
-                <textarea class="description" rows="5" readonly>{{description}}</textarea>
-            </div>
-            <div class="container3">
-                <div class="importance">{{importance}}</div>
-                <form class="edit" action='/notes/{{_id}}' method='get'><input class="editButton" type='submit' value='Editieren'></form>
-            </div>
-        </li>
-    {{/each}}
-</ul>
+{{#if notes}}
+    <ul class="list">
+        {{#each notes}}
+            <li class="container">
+                <div class="container1">
+                    <div class="date">{{date endDate}}</div>
+                    <form class="finished" action="/notes/{{_id}}" method="post">
+                        <input type="checkbox" id="finished{{_id}}" name="finished" {{setChecked 'on' finished}} onclick="submit()">
+                        <label for="finished{{_id}}">Abgeschlossen</label>
+                        <input type="hidden" name="title" value="{{title}}">
+                        <input type="hidden" name="description" value="{{description}}">
+                        <input type="hidden" name="importance" value="{{importance}}">
+                        <input type="hidden" name="endDate" value="{{endDate}}">
+                    </form>
+                </div>
+                <div class="container2">
+                    <div class="title">{{title}}</div>
+                    <textarea class="description" rows="5" readonly>{{description}}</textarea>
+                </div>
+                <div class="container3">
+                    <div class="importance">{{importance}}</div>
+                    <form class="edit" action='/notes/{{_id}}' method='get'><input class="editButton" type='submit' value='Editieren'></form>
+                </div>
+            </li>
+        {{/each}}
+    </ul>
+{{else}}
+    <p class="noNotesText">Keine Notizen gefunden</p>
+{{/if}}

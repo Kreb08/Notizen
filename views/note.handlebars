@@ -32,6 +32,13 @@
             <input type="date" id="endDate" name="endDate" value="{{endDate}}" required>
         </div>
 
+        <div class="noteElement">
+            <label for="finished">Abgeschlossen</label>
+            <div>
+                <input type="checkbox" id="finished" name="finished" {{setChecked 'on' finished}}>
+            </div>
+        </div>
+
         <button type="submit" class="noteButton">Speichern</button>
         <div class="noteElement">
             <button type="submit" form="cancelForm" class="noteButton">Cancel</button>

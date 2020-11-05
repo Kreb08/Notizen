@@ -2,12 +2,24 @@ import { noteStore } from "../services/noteStorage";
 
 export class NotesController {
   async showIndex(req: any, res: any): Promise<void> {
-    let notes = await noteStore.all(req.query.sort);
-    res.render("index", { notes: notes, sort: req.query.sort });
+    let notes = await noteStore.all(
+      req.userSettings.orderBy,
+      req.userSettings.orderDirection,
+      req.userSettings.filter
+    );
+    res.render("index", {
+      notes: notes,
+      options: req.userSettings,
+    });
   }
 
   createNote(req: any, res: any) {
-    res.render("note", { title: "Notiz anlegen:", url: req.url, note: {} });
+    res.render("note", {
+      title: "Notiz anlegen:",
+      url: req.url,
+      note: {},
+      options: { theme: req.userSettings.theme },
+    });
   }
 
   async addNote(req: any, res: any) {
@@ -28,6 +40,7 @@ export class NotesController {
       title: "Notiz editieren",
       url: req.url,
       note: await noteStore.get(req.params.id),
+      options: { theme: req.userSettings.theme },
     });
   }
 

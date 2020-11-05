@@ -31,6 +31,13 @@ let handlebars = exphbs.create({
         return date;
       }
     },
+    theme: function (theme) {
+      if (theme === "dark") {
+        return "default";
+      } else {
+        return "dark";
+      }
+    },
   },
 });
 app.engine("handlebars", handlebars.engine);
@@ -40,15 +47,21 @@ app.set("views", path.resolve("views"));
 const sessionUserSettings = (req: any, res: any, next: () => void) => {
   const userSettings = req.session.userSettings || {
     orderBy: "default",
-    orderDirection: -1,
+    orderDirection: 1,
   };
-  const { orderBy, orderDirection } = req.query;
+  const { orderBy, orderDirection, filter, theme } = req.query;
 
   if (orderBy) {
     userSettings.orderBy = orderBy;
   }
   if (orderDirection) {
     userSettings.orderDirection = orderDirection;
+  }
+  if (filter) {
+    userSettings.filter = filter;
+  }
+  if (theme) {
+    userSettings.theme = theme;
   }
   req.userSettings = req.session.userSettings = userSettings;
 
