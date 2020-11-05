@@ -1,4 +1,13 @@
 
+h1 {
+    padding: 16px 32px;
+    background-color: lightgray;
+}
+
+body {
+    font-size: 18px;
+    font-family: "Fira Code", sans-serif;
+}
 
 @media (max-width: 600px) {
     .container {
@@ -42,4 +51,37 @@
 .edit {
     grid-area: edit;
     width: fit-content;
+}
+
+.noteContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 0 8px;
+}
+
+.noteElement {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    margin: 8px 0;
+}
+
+.noteElement > label:first-child {
+    min-width: 180px;
+    align-self: center;
+}
+
+.noteElement > input, .noteElement > textarea {
+    flex: 1;
+    align-self: start;
+    padding: 8px;
+    font-family: "Fira Code", sans-serif;
+    font-size: 16px;
+}
+
+.noteButton {
+    padding: 8px 32px;
+    font-family: "Fira Code", sans-serif;
+    font-size: 16px;
 }
