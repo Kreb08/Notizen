@@ -9,6 +9,9 @@ import session from "express-session";
 const app = express();
 let handlebars = exphbs.create({
   helpers: {
+    not: function (bool) {
+      return !(bool === true || bool === "true");
+    },
     setChecked: function (value, currentValue) {
       if (value === currentValue) {
         return "checked";

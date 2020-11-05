@@ -2,8 +2,8 @@ import { noteStore } from "../services/noteStorage";
 
 export class NotesController {
   async showIndex(req: any, res: any): Promise<void> {
-    let notes = await noteStore.all();
-    res.render("index", { notes: notes });
+    let notes = await noteStore.all(req.query.sort);
+    res.render("index", { notes: notes, sort: req.query.sort });
   }
 
   createNote(req: any, res: any) {

@@ -15,7 +15,12 @@ export class NoteStore {
 
   constructor(db?: Datastore) {
     this.db =
-      db || new Datastore({ filename: "./data/notes.db", autoload: true });
+      db ||
+      new Datastore({
+        filename: "./data/notes.db",
+        autoload: true,
+        timestampData: true,
+      });
   }
 
   async add(
@@ -48,8 +53,21 @@ export class NoteStore {
     return this.db.findOne({ _id: id });
   }
 
-  async all() {
-    return this.db.find({});
+  async all(sort: string) {
+    let query;
+    switch (sort) {
+      case "importance":
+        query = { importance: -1 };
+        break;
+      case "createDate":
+        query = { createdAt: 1 };
+        break;
+      default:
+      case "finishDate":
+        query = { endDate: 1 };
+        break;
+    }
+    return this.db.find({}).sort(query);
   }
 }
 
