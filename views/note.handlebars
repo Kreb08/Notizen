@@ -3,39 +3,40 @@
     <form action='{{url}}' method='post' class="noteContainer">
         <div class="noteElement">
             <label for="title">Titel</label>
-            <input type="text" id="title" name="title" value="{{title}}">
+            <input type="text" id="title" name="title" value="{{title}}" required>
         </div>
 
         <div class="noteElement">
             <label for="description">Beschreibung</label>
-            <textarea id="description" name="description" rows="10" >{{description}}</textarea>
+            <textarea id="description" name="description" rows="10" required>{{description}}</textarea>
         </div>
 
         <div class="noteElement">
             <label>Wichtigkeit</label>
-            <input type="radio" id="one" name="importance" value="1" {{setChecked '1' importance}}>
-            <label for="one">1</label>
-            <input type="radio" id="two" name="importance" value="2" {{setChecked '2' importance}}>
-            <label for="two">2</label>
-            <input type="radio" id="three" name="importance" value="3" {{setChecked '3' importance}}>
-            <label for="three">3</label>
-            <input type="radio" id="four" name="importance" value="4" {{setChecked '4' importance}}>
-            <label for="four">4</label>
-            <input type="radio" id="five" name="importance" value="5" {{setChecked '5' importance}}>
-            <label for="five">5</label>
+            <div>
+                <input type="radio" id="one" name="importance" value="1" {{setChecked '1' importance}} required>
+                <label for="one">1</label>
+                <input type="radio" id="two" name="importance" value="2" {{setChecked '2' importance}} required>
+                <label for="two">2</label>
+                <input type="radio" id="three" name="importance" value="3" {{setChecked '3' importance}} required>
+                <label for="three">3</label>
+                <input type="radio" id="four" name="importance" value="4" {{setChecked '4' importance}} required>
+                <label for="four">4</label>
+                <input type="radio" id="five" name="importance" value="5" {{setChecked '5' importance}} required>
+                <label for="five">5</label>
+            </div>
         </div>
 
         <div class="noteElement">
             <label for="endDate">Erledigt bis:</label>
-            <input type="date" id="endDate" name="endDate" value="{{endDate}}">
+            <input type="date" id="endDate" name="endDate" value="{{endDate}}" required>
         </div>
 
         <button type="submit" class="noteButton">Speichern</button>
-    </form>
-
-    <form action="/" method="get" class="noteContainer">
         <div class="noteElement">
-            <button type="submit" class="noteButton">Cancel</button>
+            <button type="submit" form="cancelForm" class="noteButton">Cancel</button>
         </div>
     </form>
+
+    <form action="/" method="get" class="noteContainer" id="cancelForm"></form>
 {{/with}}

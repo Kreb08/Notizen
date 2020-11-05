@@ -16,6 +16,18 @@ let handlebars = exphbs.create({
         return "";
       }
     },
+    date: function (date) {
+      let today = new Date();
+      let tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      if (today.toISOString().startsWith(date)) {
+        return "Heute";
+      } else if (tomorrow.toISOString().startsWith(date)) {
+        return "Morgen";
+      } else {
+        return date;
+      }
+    },
   },
 });
 app.engine("handlebars", handlebars.engine);

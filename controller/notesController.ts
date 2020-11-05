@@ -23,9 +23,7 @@ export class NotesController {
   }
 
   async editNote(req: any, res: any) {
-    let note = await noteStore.get(req.params.id);
-    console.log("Editing:");
-    console.log(note);
+    console.log("Editing: ", req.params.id);
     await res.render("note", {
       title: "Notiz editieren",
       url: req.url,

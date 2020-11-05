@@ -1,22 +1,13 @@
 import Datastore from "nedb-promises";
 
 export class Note {
-  title: string;
-  description: string;
-  importance: number;
-  endDate: Date;
-
   constructor(
-    title: string,
-    description: string,
-    importance: number,
-    endDate: Date
-  ) {
-    this.title = title;
-    this.description = description;
-    this.importance = importance;
-    this.endDate = endDate;
-  }
+    public title: string,
+    public description: string,
+    public importance: number,
+    public endDate: Date,
+    public finished: boolean = false
+  ) {}
 }
 
 export class NoteStore {
@@ -46,6 +37,7 @@ export class NoteStore {
           description: note.description,
           importance: note.importance,
           endDate: note.endDate,
+          finished: note.finished,
         },
       }
     );

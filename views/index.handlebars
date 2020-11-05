@@ -1,10 +1,23 @@
+<h1>Notizen</h1>
 <form action='/notes' method='get'><input type='submit' value='Neue Notiz anlegen'></form>
-{{#each notes}}
-    <div class="container">
-        <div class="title">{{title}}</div>
-        <div class="importance">{{importance}}</div>
-        <div class="date">{{endDate}}</div>
-        <textarea class="description" readonly>{{description}}</textarea>
-        <form class="edit" action='/notes/{{_id}}' method='get'><input type='submit' value='Editieren'></form>
-    </div>
-{{/each}}
+<ul class="list">
+    {{#each notes}}
+        <li class="container">
+            <div class="container1">
+                <div class="date">{{date endDate}}</div>
+                <form class="finished" action="/notes/{{_id}}" method="post">
+                    <input type="checkbox" id="finished" name="finished" {{setChecked true finished}} onclick="setFinished({{_id}}, {{finished}})">
+                    <label for="finished">Abgeschlossen</label>
+                </form>
+            </div>
+            <div class="container2">
+                <div class="title">{{title}}</div>
+                <textarea class="description" rows="4" readonly>{{description}}</textarea>
+            </div>
+            <div class="container3">
+                <div class="importance">{{importance}}</div>
+                <form class="edit" action='/notes/{{_id}}' method='get'><input class="editButton" type='submit' value='Editieren'></form>
+            </div>
+        </li>
+    {{/each}}
+</ul>
