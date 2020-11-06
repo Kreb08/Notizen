@@ -3,14 +3,13 @@ import bodyParser from "body-parser";
 import exphbs from "express-handlebars";
 import path from "path";
 import router from "./routes/noteRoutes";
-import { overrideMiddleware } from "./utils/method-override";
 import session from "express-session";
 
 const app = express();
 let handlebars = exphbs.create({
   helpers: {
-    not: function (bool) {
-      return !(bool === true || bool === "true");
+    isSet: function (value, trueValue) {
+      return value === trueValue;
     },
     setChecked: function (value, currentValue) {
       if (value === currentValue) {
@@ -31,12 +30,25 @@ let handlebars = exphbs.create({
         return date;
       }
     },
-    theme: function (theme) {
+    invertFilter: function (string) {
+      if (string === "on") {
+        return "off";
+      } else {
+        return "on";
+      }
+    },
+    invertTheme: function (theme) {
       if (theme === "dark") {
         return "default";
       } else {
         return "dark";
       }
+    },
+    invertOrderDirection: function (direction) {
+      if (direction.startsWith("-")) {
+        return direction.substring(1);
+      }
+      return "-" + direction;
     },
   },
 });
@@ -46,8 +58,10 @@ app.set("views", path.resolve("views"));
 
 const sessionUserSettings = (req: any, res: any, next: () => void) => {
   const userSettings = req.session.userSettings || {
-    orderBy: "default",
+    orderBy: "finishDate",
     orderDirection: 1,
+    filter: "off",
+    theme: "default",
   };
   const { orderBy, orderDirection, filter, theme } = req.query;
 
@@ -79,7 +93,6 @@ app.use(sessionUserSettings);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(overrideMiddleware);
 app.use(router);
 app.use(express.static(path.resolve("public")));
 

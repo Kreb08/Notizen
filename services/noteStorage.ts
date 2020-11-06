@@ -6,7 +6,7 @@ export class Note {
     public description: string,
     public importance: number,
     public endDate: Date,
-    public finished: string = "off"
+    public finished: string
   ) {}
 }
 
@@ -27,13 +27,20 @@ export class NoteStore {
     title: string,
     description: string,
     importance: number,
-    endDate: Date
+    endDate: Date,
+    finished: string
   ) {
-    let note = new Note(title, description, importance, endDate);
+    if (finished === undefined) {
+      finished = "off";
+    }
+    let note = new Note(title, description, importance, endDate, finished);
     return await this.db.insert(note);
   }
 
   async updateNote(id: string, note: Note) {
+    if (note.finished === undefined) {
+      note.finished = "off";
+    }
     await this.db.update(
       { _id: id },
       {

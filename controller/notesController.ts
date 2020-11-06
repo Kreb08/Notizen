@@ -27,7 +27,8 @@ export class NotesController {
       req.body.title,
       req.body.description,
       req.body.importance,
-      req.body.endDate
+      req.body.endDate,
+      req.body.finished
     );
     console.log("Created:");
     console.log(note);
