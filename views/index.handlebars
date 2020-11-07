@@ -1,42 +1,45 @@
 <h1>Notizen</h1>
 {{#with options}}
     <div class="optionBar">
-        <div class="orderBy">
-            <form action="/" method="get" class="sortButton">
-                <input type="hidden" name="orderBy" value="finishDate">
-                {{#if (isSet orderBy "finishDate")}}
-                    <input type="hidden" name="orderDirection" value="{{invertOrderDirection orderDirection}}">
-                {{else}}
-                    <input type="hidden" name="orderDirection" value="1">
-                {{/if}}
-                <input type="hidden" name="filter" value="{{filter}}">
-                <input type="hidden" name="theme" value="{{theme}}">
-                <input class="defaultButton" type="submit" value="Finishes">
-            </form>
-            <form action="/" method="get" class="sortButton">
-                <input type="hidden" name="orderBy" value="createDate">
-                {{#if (isSet orderBy "createDate")}}
-                    <input type="hidden" name="orderDirection" value="{{invertOrderDirection orderDirection}}">
-                {{else}}
-                    <input type="hidden" name="orderDirection" value="1">
-                {{/if}}
-                <input type="hidden" name="filter" value="{{filter}}">
-                <input type="hidden" name="theme" value="{{theme}}">
-                <input class="defaultButton" type="submit" value="Created">
-            </form>
-            <form action="/" method="get" class="sortButton">
-                <input type="hidden" name="orderBy" value="importance">
-                {{#if (isSet orderBy "importance")}}
-                    <input type="hidden" name="orderDirection" value="{{invertOrderDirection orderDirection}}">
-                {{else}}
-                    <input type="hidden" name="orderDirection" value="1">
-                {{/if}}
-                <input type="hidden" name="filter" value="{{filter}}">
-                <input type="hidden" name="theme" value="{{theme}}">
-                <input class="defaultButton" type="submit" value="Importance">
-            </form>
-        </div>
         <div class="filter">
+            <p>Filter</p>
+            <div class="orderBy">
+                <form action="/" method="get" class="sortButton">
+                    <input type="hidden" name="orderBy" value="finishDate">
+                    {{#if (isSet orderBy "finishDate")}}
+                        <input type="hidden" name="orderDirection" value="{{invertOrderDirection orderDirection}}">
+                    {{else}}
+                        <input type="hidden" name="orderDirection" value="1">
+                    {{/if}}
+                    <input type="hidden" name="filter" value="{{filter}}">
+                    <input type="hidden" name="theme" value="{{theme}}">
+                    <input class="defaultButton" type="submit" value="Finishes">
+                </form>
+                <form action="/" method="get" class="sortButton">
+                    <input type="hidden" name="orderBy" value="createDate">
+                    {{#if (isSet orderBy "createDate")}}
+                        <input type="hidden" name="orderDirection" value="{{invertOrderDirection orderDirection}}">
+                    {{else}}
+                        <input type="hidden" name="orderDirection" value="1">
+                    {{/if}}
+                    <input type="hidden" name="filter" value="{{filter}}">
+                    <input type="hidden" name="theme" value="{{theme}}">
+                    <input class="defaultButton" type="submit" value="Created">
+                </form>
+                <form action="/" method="get" class="sortButton">
+                    <input type="hidden" name="orderBy" value="importance">
+                    {{#if (isSet orderBy "importance")}}
+                        <input type="hidden" name="orderDirection" value="{{invertOrderDirection orderDirection}}">
+                    {{else}}
+                        <input type="hidden" name="orderDirection" value="1">
+                    {{/if}}
+                    <input type="hidden" name="filter" value="{{filter}}">
+                    <input type="hidden" name="theme" value="{{theme}}">
+                    <input class="defaultButton" type="submit" value="Importance">
+                </form>
+            </div>
+        </div>
+        <div class="switches">
             <form action="/" method="get" class="sortButton">
                 <input type="hidden" name="orderBy" value="{{orderBy}}">
                 <input type="hidden" name="orderDirection" value="{{orderDirection}}">
@@ -54,7 +57,8 @@
         </div>
     </div>
 {{/with}}
-<form action='/notes' method='get' class="optionBar"><input type='submit' value='Neue Notiz anlegen' class="defaultButton"></form>
+<form action='/notes' method='get' class="optionBar"><input type='submit' value='Neue Notiz anlegen'
+                                                            class="defaultButton"></form>
 {{#if notes}}
     <ul class="list">
         {{#each notes}}
@@ -62,7 +66,8 @@
                 <div class="container1">
                     <div class="date">{{date endDate}}</div>
                     <form class="finished" action="/notes/{{_id}}" method="post">
-                        <input type="checkbox" id="finished{{_id}}" name="finished" {{setChecked 'on' finished}} onclick="submit()">
+                        <input type="checkbox" id="finished{{_id}}" name="finished" {{setChecked 'on' finished}}
+                               onclick="submit()">
                         <label for="finished{{_id}}">Abgeschlossen</label>
                         <input type="hidden" name="title" value="{{title}}">
                         <input type="hidden" name="description" value="{{description}}">
@@ -76,7 +81,8 @@
                 </div>
                 <div class="container3">
                     <div class="importance">{{importance}}</div>
-                    <form class="edit" action='/notes/{{_id}}' method='get'><input class="defaultButton" type='submit' value='Editieren'></form>
+                    <form class="edit" action='/notes/{{_id}}' method='get'><input class="defaultButton" type='submit'
+                                                                                   value='Editieren'></form>
                 </div>
             </li>
         {{/each}}

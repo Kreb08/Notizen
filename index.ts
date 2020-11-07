@@ -18,7 +18,7 @@ let handlebars = exphbs.create({
         return "";
       }
     },
-    date: function (date) {
+    date: function (date: string) {
       let today = new Date();
       let tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
@@ -30,21 +30,21 @@ let handlebars = exphbs.create({
         return date;
       }
     },
-    invertFilter: function (string) {
-      if (string === "on") {
+    invertFilter: function (filter: string) {
+      if (filter === "on") {
         return "off";
       } else {
         return "on";
       }
     },
-    invertTheme: function (theme) {
+    invertTheme: function (theme: string) {
       if (theme === "dark") {
         return "default";
       } else {
         return "dark";
       }
     },
-    invertOrderDirection: function (direction) {
+    invertOrderDirection: function (direction: string) {
       if (direction.startsWith("-")) {
         return direction.substring(1);
       }
@@ -59,7 +59,7 @@ app.set("views", path.resolve("views"));
 const sessionUserSettings = (req: any, res: any, next: () => void) => {
   const userSettings = req.session.userSettings || {
     orderBy: "finishDate",
-    orderDirection: 1,
+    orderDirection: "1",
     filter: "off",
     theme: "default",
   };
